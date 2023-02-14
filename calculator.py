@@ -50,7 +50,7 @@ class Calculator(QMainWindow):
         self.add_btn(QPushButton('2'), 3, 1, 1, 1)
         self.add_btn(QPushButton('3'), 3, 2, 1, 1)
         self.add_btn(QPushButton('/'), 3, 3, 1, 1)
-        self.add_btn(QPushButton('()'), 3, 4, 1, 1)
+        self.add_btn(QPushButton('()'), 3, 4, 1, 1, self.parentheses)
 
         # fourth     line
         self.add_btn(QPushButton('.'), 4, 0, 1, 1)
@@ -88,6 +88,18 @@ class Calculator(QMainWindow):
             self.display.setText(str(eval(self.display.text())))
         except Exception as e:
             self.display.setText('Invalid Account')
+
+    # Function to set a parentheses
+    def parentheses(self):
+
+        if self.display.text() == '':
+            self.display.setText(self.display.text() + '(')
+
+        elif not self.display.text()[len(self.display.text()) - 1] in self.list_operators:
+            self.display.setText(self.display.text() + ')')
+
+        else:
+            self.display.setText(self.display.text() + '(')
 
 
 if __name__ == '__main__':
