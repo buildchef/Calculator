@@ -34,7 +34,8 @@ class Calculator(QMainWindow):
         self.add_btn(QPushButton('8'), 1, 1, 1, 1)
         self.add_btn(QPushButton('9'), 1, 2, 1, 1)
         self.add_btn(QPushButton('+'), 1, 3, 1, 1)
-        self.add_btn(QPushButton('C'), 1, 4, 1, 1)
+        self.add_btn(QPushButton('C'), 1, 4, 1, 1,
+                     lambda: self.display.setText(''))
 
         # second line
         self.add_btn(QPushButton('4'), 2, 0, 1, 1)
