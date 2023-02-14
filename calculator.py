@@ -55,7 +55,7 @@ class Calculator(QMainWindow):
         self.add_btn(QPushButton('0'), 4, 1, 1, 1)
         self.add_btn(QPushButton('%'), 4, 2, 1, 1)
         self.add_btn(QPushButton('*'), 4, 3, 1, 1)
-        self.add_btn(QPushButton('='), 4, 4, 1, 1)
+        self.add_btn(QPushButton('='), 4, 4, 1, 1, self.equals)
 
         self.setCentralWidget(self.cw)
 
@@ -79,6 +79,13 @@ class Calculator(QMainWindow):
             btn.setStyleSheet(style)
 
         btn.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Expanding)
+
+    # Function to display the result of the operation
+    def equals(self):
+        try:
+            self.display.setText(str(eval(self.display.text())))
+        except Exception as e:
+            self.display.setText('Invalid Account')
 
 
 if __name__ == '__main__':
