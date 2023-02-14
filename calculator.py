@@ -17,6 +17,7 @@ class Calculator(QMainWindow):
         self.cw = QWidget()
         self.grid = QGridLayout(self.cw)
         self.list_operators = ['(', '+', '-', '/', '*', '%']
+        self.special_buttons = 'background: #7f93b3; color: #fff; border: 2px solid #b1bbc9; font-size: 30px; border-radius: 20px;'
         self.setStyleSheet('background: #161829')
 
         # Adding a display
@@ -35,7 +36,7 @@ class Calculator(QMainWindow):
         self.add_btn(QPushButton('9'), 1, 2, 1, 1)
         self.add_btn(QPushButton('+'), 1, 3, 1, 1)
         self.add_btn(QPushButton('C'), 1, 4, 1, 1,
-                     lambda: self.display.setText(''))
+                     lambda: self.display.setText(''), self.special_buttons)
 
         # second line
         self.add_btn(QPushButton('4'), 2, 0, 1, 1)
@@ -43,21 +44,23 @@ class Calculator(QMainWindow):
         self.add_btn(QPushButton('6'), 2, 2, 1, 1)
         self.add_btn(QPushButton('-'), 2, 3, 1, 1)
         self.add_btn(QPushButton('<-'), 2, 4, 1, 1,
-                     lambda: self.display.setText(self.display.text()[:-1]))
+                     lambda: self.display.setText(self.display.text()[:-1]), self.special_buttons)
 
         # third line
         self.add_btn(QPushButton('1'), 3, 0, 1, 1)
         self.add_btn(QPushButton('2'), 3, 1, 1, 1)
         self.add_btn(QPushButton('3'), 3, 2, 1, 1)
         self.add_btn(QPushButton('/'), 3, 3, 1, 1)
-        self.add_btn(QPushButton('()'), 3, 4, 1, 1, self.parentheses)
+        self.add_btn(QPushButton('()'), 3, 4, 1, 1,
+                     self.parentheses, self.special_buttons)
 
         # fourth     line
         self.add_btn(QPushButton('.'), 4, 0, 1, 1)
         self.add_btn(QPushButton('0'), 4, 1, 1, 1)
         self.add_btn(QPushButton('%'), 4, 2, 1, 1)
         self.add_btn(QPushButton('*'), 4, 3, 1, 1)
-        self.add_btn(QPushButton('='), 4, 4, 1, 1, self.equals)
+        self.add_btn(QPushButton('='), 4, 4, 1, 1,
+                     self.equals, self.special_buttons)
 
         self.setCentralWidget(self.cw)
 
